@@ -2,8 +2,8 @@ package ru.netology.Smarthome;
 
 public class Radio {
 
-    public int currentRadioStation;
-
+    private int currentRadioStation;
+    private int currentVolume;
 
     public int getCurrentRadioStation() {
         return currentRadioStation;
@@ -39,7 +39,6 @@ public class Radio {
         currentRadioStation--;
     }
 
-    public int currentVolume;
 
     public int getCurrentVolume() {
         return currentVolume;
@@ -57,29 +56,29 @@ public class Radio {
 
 
     public void increaseVolume() {
-        if (currentVolume == 0) {
+        if (currentVolume == 10) {
+
+            currentVolume = 10;
             return;
         }
-        if (currentVolume < 10) {
+        currentVolume = currentVolume + 1;
 
-            currentVolume = currentVolume + 1;
-
-        }
 
     }
 
     public void decreaseVolume() {
 
         if (currentVolume == 0) {
+            currentVolume = 0;
             return;
         }
-        if (currentVolume > 0) {
-            currentVolume = currentVolume - 1;
 
-        }
+        currentVolume = currentVolume - 1;
+
 
     }
 }
+
 
 
 

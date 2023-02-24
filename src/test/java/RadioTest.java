@@ -4,15 +4,6 @@ import ru.netology.Smarthome.Radio;
 
 public class RadioTest {
 
-    @Test
-    public void shouldSetRadioStation() {
-        Radio stat = new Radio();
-        stat.setCurrentRadioStation(6);
-
-        int expected = 6;
-        int actual = stat.currentRadioStation;
-        Assertions.assertEquals(expected, actual);
-    }
 
     @Test
     public void shouldNotSetRadioStationAboveMax() {
@@ -80,7 +71,7 @@ public class RadioTest {
 
 
     @Test
-    public void shouldValueSetAboveMaxVolumeLevel1() {
+    public void shouldValueSetLevelBelowMin() {
         Radio stat = new Radio();
         stat.setCurrentVolume(-1);
         int expected = 0;
@@ -90,24 +81,22 @@ public class RadioTest {
     }
 
     @Test
-    public void shouldTurnDownVolumeInMiddle() {
+    public void shouldSetVolumeLevelAboveMax() {
         Radio stat = new Radio();
-        int currentVolume = 6;
-        stat.setCurrentVolume(currentVolume);
-        stat.decreaseVolume();
-        int expected = 5;
+        stat.setCurrentVolume(11);
+        int expected = 0;
         int actual = stat.getCurrentVolume();
         Assertions.assertEquals(expected, actual);
 
     }
 
     @Test
-    public void shouldSetPreviousVolumeSoundAboutMax() {
+    public void shouldReduceVolumeLevelBelowMin() {
         Radio stat = new Radio();
-        int currentVolume = 10;
+        int currentVolume = 0;
         stat.setCurrentVolume(currentVolume);
         stat.decreaseVolume();
-        int expected = 9;
+        int expected = 0;
         int actual = stat.getCurrentVolume();
         Assertions.assertEquals(expected, actual);
 
@@ -125,49 +114,25 @@ public class RadioTest {
         Assertions.assertEquals(expected, actual);
     }
 
-
     @Test
-    public void shouldReduceMinVolumeLevelOn() {
+    public void shouldReduceVolumeLevel() {
         Radio stat = new Radio();
-        int currentVolume = 1;
+        int currentVolume = 4;
         stat.setCurrentVolume(currentVolume);
         stat.decreaseVolume();
-        int expected = 0;
+        int expected = 3;
         int actual = stat.getCurrentVolume();
         Assertions.assertEquals(expected, actual);
 
     }
 
     @Test
-    public void shouldSetVolumeLevelBelowMin() {
+    public void shouldIncreaseVolumeLevel() {
         Radio stat = new Radio();
-        int currentVolume = 0;
-        stat.setCurrentVolume(currentVolume);
-        stat.decreaseVolume();
-        int expected = 0;
-        int actual = stat.getCurrentVolume();
-        Assertions.assertEquals(expected, actual);
-
-    }
-
-    @Test
-    public void shouldSetVolumeLevelAboveMax() {
-        Radio stat = new Radio();
-        int currentVolume = 11;
+        int currentVolume = 9;
         stat.setCurrentVolume(currentVolume);
         stat.increaseVolume();
-        int expected = 0;
-        int actual = stat.getCurrentVolume();
-        Assertions.assertEquals(expected, actual);
-    }
-
-    @Test
-    public void shouldIncreaseVolumeLevelBeginning() {
-        Radio stat = new Radio();
-        int currentVolume = 1;
-        stat.setCurrentVolume(currentVolume);
-        stat.increaseVolume();
-        int expected = 2;
+        int expected = 10;
         int actual = stat.getCurrentVolume();
         Assertions.assertEquals(expected, actual);
     }
