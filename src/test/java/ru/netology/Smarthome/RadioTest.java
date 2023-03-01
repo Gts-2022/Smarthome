@@ -2,12 +2,12 @@ package ru.netology.Smarthome;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import ru.netology.Smarthome.Radio;
+
 
 public class RadioTest {
     @Test
     public void shouldNumberRadioStation() {
-        Radio stat = new Radio(0, 49, 0, 100);
+        Radio stat = new Radio(50);
 
         Assertions.assertEquals(49, stat.getMaxRadioStation());
         Assertions.assertEquals(0, stat.getMinRadioStation());
@@ -18,16 +18,28 @@ public class RadioTest {
     }
 
     @Test
+    public void shouldChangeNumberRadioStation() {
+        Radio stat = new Radio();
+
+        Assertions.assertEquals(9, stat.getMaxRadioStation());
+        Assertions.assertEquals(0, stat.getMinRadioStation());
+        Assertions.assertEquals(0, stat.getCurrentRadioStation());
+        Assertions.assertEquals(100, stat.getMaxVolume());
+        Assertions.assertEquals(0, stat.getMinVolume());
+        Assertions.assertEquals(0, stat.getCurrentVolume());
+    }
+
+    @Test
     public void shouldNotSetRadioStationAboveMax() {
-        Radio stat = new Radio(50);
-        stat.setCurrentRadioStation(50);
+        Radio stat = new Radio();
+        stat.setCurrentRadioStation(10);
         Assertions.assertEquals(0, stat.getCurrentRadioStation());
 
     }
 
     @Test
     public void shouldNotSetRadioStationBelowMin() {
-        Radio stat = new Radio(50);
+        Radio stat = new Radio();
         stat.setCurrentRadioStation(-10);
         Assertions.assertEquals(0, stat.getMinRadioStation());
 
@@ -35,7 +47,7 @@ public class RadioTest {
 
     @Test
     public void shouldNextRadioStationAfterCurrent() {
-        Radio stat = new Radio(50);
+        Radio stat = new Radio();
         int currentRadioStation = 2;
         stat.setCurrentRadioStation(currentRadioStation);
         stat.setIncreaseNextStation();
@@ -45,17 +57,17 @@ public class RadioTest {
 
     @Test
     public void shouldReduceCurrentRadioStation() {
-        Radio stat = new Radio(50);
-        int currentRadioStation = 19;
+        Radio stat = new Radio();
+        int currentRadioStation = 9;
         stat.setCurrentRadioStation(currentRadioStation);
         stat.setReduceCurrentStation();
-        Assertions.assertEquals(18, stat.getCurrentRadioStation());
+        Assertions.assertEquals(8, stat.getCurrentRadioStation());
     }
 
     @Test
     public void shouldNextStationAfterMax() {
-        Radio stat = new Radio(50);
-        int currentRadioStation = 49;
+        Radio stat = new Radio();
+        int currentRadioStation = 9;
         stat.setCurrentRadioStation(currentRadioStation);
         stat.setIncreaseNextStation();
 
@@ -64,18 +76,18 @@ public class RadioTest {
 
     @Test
     public void shouldPreviousStationBeforeMin() {
-        Radio stat = new Radio(50);
+        Radio stat = new Radio();
         int currentRadioStation = 0;
         stat.setCurrentRadioStation(currentRadioStation);
         stat.setReduceCurrentStation();
 
-        Assertions.assertEquals(49, stat.getCurrentRadioStation());
+        Assertions.assertEquals(9, stat.getCurrentRadioStation());
     }
 
     @Test
     public void shouldValueSetLevelBelowMin() {
 
-        Radio stat = new Radio(50);
+        Radio stat = new Radio();
         stat.setCurrentVolume(-1);
 
         Assertions.assertEquals(0, stat.getCurrentVolume());
@@ -84,7 +96,7 @@ public class RadioTest {
 
     @Test
     public void shouldSetVolumeLevelAboveMax() {
-        Radio stat = new Radio(50);
+        Radio stat = new Radio();
         stat.setCurrentVolume(101);
 
         Assertions.assertEquals(0, stat.getCurrentVolume());
@@ -93,7 +105,7 @@ public class RadioTest {
 
     @Test
     public void shouldReduceVolumeLevelBelowMin() {
-        Radio stat = new Radio(50);
+        Radio stat = new Radio();
         int currentVolume = 0;
         stat.setCurrentVolume(currentVolume);
         stat.setDecreaseVolume();
@@ -105,7 +117,7 @@ public class RadioTest {
 
     @Test
     public void shouldReduceVolumeLevel() {
-        Radio stat = new Radio(50);
+        Radio stat = new Radio();
         int currentVolume = 45;
         stat.setCurrentVolume(currentVolume);
         stat.setDecreaseVolume();
@@ -116,7 +128,7 @@ public class RadioTest {
 
     @Test
     public void shouldIncreaseVolumeLevel() {
-        Radio stat = new Radio(50);
+        Radio stat = new Radio();
         int currentVolume = 19;
         stat.setCurrentVolume(currentVolume);
         stat.setIncreaseVolume();
@@ -126,7 +138,7 @@ public class RadioTest {
 
     @Test
     public void shouldIncreaseMaxVolumeLevelOne() {
-        Radio stat = new Radio(50);
+        Radio stat = new Radio();
         int currentVolume = 100;
         stat.setCurrentVolume(currentVolume);
         stat.setIncreaseVolume();

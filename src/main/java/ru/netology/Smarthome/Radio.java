@@ -1,26 +1,26 @@
 package ru.netology.Smarthome;
 
+
 public class Radio {
     private int maxRadioStation = 9;
     private int minRadioStation = 0;
     private int currentRadioStation = minRadioStation;
-    private int minVolume = 0;
+
     private int maxVolume = 100;
+    private int minVolume = 0;
     private int currentVolume = minVolume;
 
-    public Radio(int minRadioStation, int maxRadioStation, int minVolume, int maxVolume) {
-        this.minRadioStation = minRadioStation;
-        this.maxRadioStation = maxRadioStation;
-        this.currentRadioStation = minRadioStation;
-        this.minVolume = minVolume;
-        this.maxVolume = maxVolume;
-        this.currentVolume = minVolume;
+
+    public Radio() {
 
     }
 
-    public Radio(int zice) {
-        maxRadioStation = zice - 1;
+    public Radio(int maxStationIndex) {
+
+        maxRadioStation = maxStationIndex - 1;
+
     }
+
 
     public int getMaxRadioStation() {
 
@@ -115,6 +115,8 @@ public class Radio {
 
     }
 }
+
+
 
 
 
