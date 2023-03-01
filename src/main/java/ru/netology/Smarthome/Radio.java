@@ -1,38 +1,79 @@
 package ru.netology.Smarthome;
 
-public class Radio {
 
-    private int currentRadioStation;
-    private int currentVolume;
+public class Radio {
+    private int maxRadioStation = 9;
+    private int minRadioStation = 0;
+    private int currentRadioStation = minRadioStation;
+
+    private int maxVolume = 100;
+    private int minVolume = 0;
+    private int currentVolume = minVolume;
+
+
+    public Radio() {
+
+    }
+
+    public Radio(int maxStationIndex) {
+
+        maxRadioStation = maxStationIndex - 1;
+
+    }
+
+
+    public int getMaxRadioStation() {
+
+        return maxRadioStation;
+    }
+
+    public int getMinRadioStation() {
+        return minRadioStation;
+    }
 
     public int getCurrentRadioStation() {
+
         return currentRadioStation;
     }
 
+    public int getMaxVolume() {
+        return maxVolume;
+    }
+
+    public int getMinVolume() {
+        return minVolume;
+    }
+
+    public int getCurrentVolume() {
+
+        return currentVolume;
+    }
+
+
     public void setCurrentRadioStation(int newCurrentRadioStation) {
-        if (newCurrentRadioStation < 0) {
+        if (newCurrentRadioStation < minRadioStation) {
             return;
         }
-        if (newCurrentRadioStation > 9) {
+        if (newCurrentRadioStation > maxRadioStation) {
             return;
         }
         currentRadioStation = newCurrentRadioStation;
     }
 
-    public void increaseNextStation() {
+    public void setIncreaseNextStation() {
 
-        if (currentRadioStation == 9) {
-            currentRadioStation = 0;
+        if (currentRadioStation == maxRadioStation) {
+            currentRadioStation = minRadioStation;
             return;
 
         }
         currentRadioStation++;
     }
 
-    public void reduceCurrentStation() {
+    public void setReduceCurrentStation() {
 
-        if (currentRadioStation == 0) {
-            currentRadioStation = 9;
+        if (currentRadioStation == minRadioStation) {
+            currentRadioStation = maxRadioStation;
             return;
 
         }
@@ -40,25 +81,21 @@ public class Radio {
     }
 
 
-    public int getCurrentVolume() {
-        return currentVolume;
-    }
-
     public void setCurrentVolume(int newCurrentVolume) {
-        if (newCurrentVolume < 0) {
+        if (newCurrentVolume < minVolume) {
             return;
         }
-        if (newCurrentVolume > 10) {
+        if (newCurrentVolume > maxVolume) {
             return;
         }
         currentVolume = newCurrentVolume;
     }
 
 
-    public void increaseVolume() {
-        if (currentVolume == 10) {
+    public void setIncreaseVolume() {
+        if (currentVolume == maxVolume) {
 
-            currentVolume = 10;
+            currentVolume = maxVolume;
             return;
         }
         currentVolume = currentVolume + 1;
@@ -66,10 +103,10 @@ public class Radio {
 
     }
 
-    public void decreaseVolume() {
+    public void setDecreaseVolume() {
 
-        if (currentVolume == 0) {
-            currentVolume = 0;
+        if (currentVolume == minVolume) {
+            currentVolume = minVolume;
             return;
         }
 
@@ -78,6 +115,8 @@ public class Radio {
 
     }
 }
+
+
 
 
 
