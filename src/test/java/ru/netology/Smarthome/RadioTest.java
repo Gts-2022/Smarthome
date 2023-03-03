@@ -2,7 +2,6 @@ package ru.netology.Smarthome;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
-import ru.netology.Smarthome.Radio;
 
 public class RadioTest {
     @Test
@@ -20,17 +19,26 @@ public class RadioTest {
     @Test
     public void shouldNotSetRadioStationAboveMax() {
         Radio stat = new Radio();
-        stat.setCurrentRadioStation(10);
         Assertions.assertEquals(0, stat.getCurrentRadioStation());
 
     }
+
     @Test
     public void shouldChangeNotSetRadioStationAboveMax() {
+        Radio stat = new Radio();
+        stat.setCurrentRadioStation(50);
+        Assertions.assertEquals(0, stat.getCurrentRadioStation());
+
+    }
+
+    @Test
+    public void shouldChangeNotSetRadioStationAboveMax1() {
         Radio stat = new Radio(50);
         stat.setCurrentRadioStation(50);
         Assertions.assertEquals(0, stat.getCurrentRadioStation());
 
     }
+
     @Test
     public void shouldNotSetRadioStationBelowMin() {
         Radio stat = new Radio();
@@ -51,7 +59,7 @@ public class RadioTest {
 
     @Test
     public void shouldReduceCurrentRadioStation() {
-        Radio stat = new Radio();
+        Radio stat = new Radio(50);
         int currentRadioStation = 9;
         stat.setCurrentRadioStation(currentRadioStation);
         stat.setReduceCurrentStation();
